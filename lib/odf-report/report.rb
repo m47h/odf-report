@@ -3,7 +3,7 @@ module ODFReport
 class Report
   include Fields, Images
 
-  attr_accessor :fields, :tables, :images, :sections, :file, :texts
+  attr_accessor :fields, :tables, :images, :sections, :file, :texts, :gender
 
   def initialize(template_name, &block)
 
@@ -67,6 +67,7 @@ class Report
         replace_tables!(doc)
 
         find_image_name_matches(doc)
+        replace_by_gender(doc)
 
       end
 

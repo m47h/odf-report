@@ -14,6 +14,16 @@ module ODFReport
       _node.inner_html = txt
 
     end
+    
+    def replace_by_gender(_node)
+      txt = _node.inner_html
+      regx = /({(.{,5});(.{,5})})/ #select {xxx;yyy} sections and prepare by gender (true = xxx) : (false = yyy)
+      until txt[regx] == nil
+        txt.gsub!(txt[regx], txt[regx].split(";")[@gender ? 0 : 1].gsub(/({|})/, ""))
+      end
+      _node.inner_html = txt
+    end
+    
 
     private
 
